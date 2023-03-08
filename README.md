@@ -1,6 +1,6 @@
 # AirBnB clone - The console
 
-<img src="https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230307%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230307T195459Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=90bee6636196913b35210cd70a11842815c018478d0e33c3cea0e69040411b17">
+<img src="assets/hbnb_header.png" alt="ALX AirBnB header">
 
 ## Background Context
 
