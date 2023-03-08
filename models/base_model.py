@@ -32,11 +32,9 @@ class BaseModel():
             self.created_at = self.updated_at = datetime.now()
 
         for key, value in kwargs.items():
-
+            if key == '__class__':
+                continue
             setattr(self, key, value)
-
-        # self.id = str(uuid4())
-        # self.created_at = self.updated_at = datetime.now()
 
     def __str__(self):
         """
