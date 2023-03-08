@@ -15,21 +15,25 @@ Public instance attributes:
 from uuid import uuid4
 from datetime import datetime
 
+
 class BaseModel():
     """
     The base model that defines all common attributes/methods for other
     classes.
     """
+
     def __init__(self, id=None, created_at=None, updated_at=None):
         self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
     def __str__(self):
-        str = f"[{__class__.__name__}] ({self.id}) {self.__dict__}"
+        str = f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
         return str
+
     def save(self):
         self.updated_at = datetime.now()
+
     def to_dict(self):
         """instance to dictionary representation."""
         dict_repr = {}
@@ -40,6 +44,3 @@ class BaseModel():
                 dict_repr[key] = i.strftime('%Y-%m-%dT%H:%M:%S.%f')
             dict_repr[i] = getattr(self, i)
         return dict_repr
-
-
-
