@@ -22,23 +22,38 @@ class BaseModel():
     classes.
     """
 
-    def __init__(self, id=None, created_at=None, updated_at=None):
+    def __init__(self):
+        """
+        Initializes the public instance attributes of the BaseModel Class.
+        """
         self.id = str(uuid4())
         self.created_at = self.updated_at = datetime.now()
 
     def __str__(self):
-        str = f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
-        return str
+        """
+        Returns a string representation of the BaseModel instance.
+        """
+        str_repr = f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        return str_repr
 
     def save(self):
+        """
+        Updates the public instance attribute updated_at with the
+        current datetime.
+        """
         self.updated_at = datetime.now()
 
     def to_dict(self):
-        """instance to dictionary representation."""
-        dict_repr = self.__dict__.copy()
-        dict_repr["__class__"] = self.__class__.__name__
-        for k,v in dict_repr.items():
+        """
+        Returns dictionary representation of the instance, along with
+        the class name
+        - isoformat of datetime object for created_at and updated_at.
+        """
+        dict_repr = {}
+        for k,v in self.__dict__.items():
             if isinstance(k, datetime):
-                dict_repr[k] = v.strftime('%Y-%m-%dT%H:%M:%S.%f')
+                dict_repr[k] = v.isoformat()
+            dict_repr[k] = v
+            dict_repr["__class__"] = self.__class__.__name__
 
         return dict_repr
