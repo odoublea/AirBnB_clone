@@ -83,4 +83,4 @@ $
 
 # Author
 
-> - AbdulQudus Oladega <[odoublea](https://github.com/odoublea)>
+> - [AbdulQudus Oladega](https://github.com/odoublea)
