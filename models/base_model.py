@@ -34,11 +34,11 @@ class BaseModel():
         """instance to dictionary representation."""
         dict_repr = {}
         attrs = ('id', 'created_at', 'updated_at')
+        dict_repr["__class__"] = type(self).__name__
         for i in attrs:
             if isinstance(i, datetime):
                 dict_repr[key] = i.strftime('%Y-%m-%dT%H:%M:%S.%f')
             dict_repr[i] = getattr(self, i)
-        dict_repr["__class__"] = type(self).__name__
         return dict_repr
 
 
