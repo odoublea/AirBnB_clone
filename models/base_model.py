@@ -22,12 +22,21 @@ class BaseModel():
     classes.
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Initializes the public instance attributes of the BaseModel Class.
         """
-        self.id = str(uuid4())
-        self.created_at = self.updated_at = datetime.now()
+        
+        if not kwargs:
+            self.id = str(uuid4())
+            self.created_at = self.updated_at = datetime.now()
+
+        for key, value in kwargs.items():
+
+            setattr(self, key, value)
+
+        # self.id = str(uuid4())
+        # self.created_at = self.updated_at = datetime.now()
 
     def __str__(self):
         """
