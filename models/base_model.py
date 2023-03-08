@@ -37,7 +37,8 @@ class BaseModel():
         """instance to dictionary representation."""
         dict_repr = self.__dict__.copy()
         dict_repr["__class__"] = self.__class__.__name__
+        for k,v in dict_repr.items():
             if isinstance(k, datetime):
                 dict_repr[k] = v.strftime('%Y-%m-%dT%H:%M:%S.%f')
-            dict_repr[k] = v
+
         return dict_repr
