@@ -24,11 +24,10 @@ class BaseModel():
 
     def __init__(self, id=None, created_at=None, updated_at=None):
         self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        self.created_at = self.updated_at = datetime.now()
 
     def __str__(self):
-        str = f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
+        str = f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
         return str
 
     def save(self):
@@ -36,11 +35,9 @@ class BaseModel():
 
     def to_dict(self):
         """instance to dictionary representation."""
-        dict_repr = {}
-        attrs = ('id', 'created_at', 'updated_at')
-        dict_repr["__class__"] = type(self).__name__
-        for i in attrs:
-            if isinstance(i, datetime):
-                dict_repr[key] = i.strftime('%Y-%m-%dT%H:%M:%S.%f')
-            dict_repr[i] = getattr(self, i)
+        dict_repr = self.__dict__.copy()
+        dict_repr["__class__"] = self.__class__.__name__
+            if isinstance(k, datetime):
+                dict_repr[k] = v.strftime('%Y-%m-%dT%H:%M:%S.%f')
+            dict_repr[k] = v
         return dict_repr
