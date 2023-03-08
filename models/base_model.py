@@ -49,11 +49,10 @@ class BaseModel():
         the class name
         - isoformat of datetime object for created_at and updated_at.
         """
-        dict_repr = {}
-        for k,v in self.__dict__.items():
+        dict_repr = self.__dict__.copy()
+        dict_repr["__class__"] = self.__class__.__name__
+        for k, v in dict_repr.items():
             if isinstance(k, datetime):
                 dict_repr[k] = v.isoformat()
-            dict_repr[k] = v
-            dict_repr["__class__"] = self.__class__.__name__
 
         return dict_repr
