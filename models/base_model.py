@@ -31,6 +31,8 @@ class BaseModel():
         if not kwargs:
             self.id = str(uuid4())
             self.created_at = self.updated_at = datetime.now()
+            models.storage.new(self)
+            models.storage.save()
 
         for key, value in kwargs.items():
             if key == '__class__':
