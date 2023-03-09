@@ -14,6 +14,7 @@ Public instance attributes:
 
 from uuid import uuid4
 from datetime import datetime
+from models.__init__ import storage
 
 
 class BaseModel():
@@ -49,6 +50,7 @@ class BaseModel():
         current datetime.
         """
         self.updated_at = datetime.now()
+        storage.reload()
 
     def to_dict(self):
         """
