@@ -14,7 +14,7 @@ Public instance attributes:
 
 from uuid import uuid4
 from datetime import datetime
-from models.__init__ import storage
+import models
 
 
 class BaseModel():
@@ -27,7 +27,7 @@ class BaseModel():
         """
         Initializes the public instance attributes of the BaseModel Class.
         """
-        
+
         if not kwargs:
             self.id = str(uuid4())
             self.created_at = self.updated_at = datetime.now()
@@ -35,6 +35,8 @@ class BaseModel():
         for key, value in kwargs.items():
             if key == '__class__':
                 continue
+            if key == 'created_at' or key == 'updated_at':
+                value = datetime.isoformat(value)
             setattr(self, key, value)
 
     def __str__(self):
@@ -50,7 +52,7 @@ class BaseModel():
         current datetime.
         """
         self.updated_at = datetime.now()
-        storage.reload()
+        models.storage.save()
 
     def to_dict(self):
         """
