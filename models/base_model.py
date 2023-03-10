@@ -31,15 +31,14 @@ class BaseModel():
         if not kwargs:
             self.id = str(uuid4())
             self.created_at = self.updated_at = datetime.now()
-            models.storage.new(self)
-            models.storage.save()
 
-        for key, value in kwargs.items():
-            if key == '__class__':
-                continue
-            if key == 'created_at' or key == 'updated_at':
-                value = datetime.isoformat(value)
-            setattr(self, key, value)
+        else:
+            for key, value in kwargs.items():
+                if key == '__class__':
+                    continue
+                if key == 'created_at' or key == 'updated_at':
+                    value = datetime.fromisoformat(value)
+                setattr(self, key, value)
 
     def __str__(self):
         """
@@ -53,7 +52,9 @@ class BaseModel():
         Updates the public instance attribute updated_at with the
         current datetime.
         """
+        # print(self.id)
         self.updated_at = datetime.now()
+        models.storage.new(self)
         models.storage.save()
 
     def to_dict(self):
@@ -65,7 +66,7 @@ class BaseModel():
         dict_repr = self.__dict__.copy()
         dict_repr["__class__"] = self.__class__.__name__
         for k, v in dict_repr.items():
-            if isinstance(k, datetime):
+            if isinstance(v, datetime):
                 dict_repr[k] = v.isoformat()
 
         return dict_repr
