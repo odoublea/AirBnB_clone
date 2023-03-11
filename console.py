@@ -13,6 +13,7 @@ class HBNBCommand(cmd.Cmd):
     """
         HBNB command line interpreter
     """
+    intro = 'Welcome to the Hbnb shell. Type help or ? to list commands.\n'
     prompt = '(hbnb) '
 
     def do_quit(self, arg):
