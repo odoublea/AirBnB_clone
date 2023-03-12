@@ -7,6 +7,7 @@
 import cmd
 import models
 from models.base_model import BaseModel
+import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -93,6 +94,30 @@ class HBNBCommand(cmd.Cmd):
             for key, value in models.storage.all().items():
                 if arg in key:
                     print(value)
+
+    def do_update(self, arg):
+        """Updates an instance based on the class name and id by adding or
+        updating attribute (save the change into the JSON file). Ex:
+        $ update BaseModel 1234-1234-1234 `aibnb@mail.com`. 
+        """
+        if arg == "":
+            print("** class name missing **")
+        elif arg.split()[0] != "BaseModel":
+            print("** class doesn't exist **")
+        elif len(arg.split()) == 1:
+            print("** instance id missing **")
+        elif len(arg.split()) == 2:
+            print("** attribute name missing **")
+        elif len(arg.split()) == 3:
+            print("** value missing **")
+        else:
+            key = arg.split()[0] + "." + arg.split()[1]
+            if key in models.storage.all():
+                setattr(models.storage.all()[key], arg.split()[2],
+                        arg.split()[3].strip('"'))
+                models.storage.save()
+            else:
+                print("** no instance found **")
 
 
 if __name__ == '__main__':
