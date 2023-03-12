@@ -10,8 +10,14 @@ to a JSON file and deserializes JSON file to instances.
 """
 
 import json
-from models.base_model import BaseModel
 from datetime import datetime
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage():
@@ -21,9 +27,20 @@ class FileStorage():
     """
     __file_path = "file.json"
     __objects = {}
+    __classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "Place": Place,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Review": Review
+    }
 
-    def all(self):
-        """Returns the dictionary __objects"""
+    def all(self, cls=None):
+        """Returns a dictionary of all objects of a given class."""
+        if cls:
+            return {k: v for k, v in self.__objects.items() if type(v) == cls}
         return self.__objects
 
     def new(self, obj):

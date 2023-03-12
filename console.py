@@ -7,7 +7,15 @@
 import cmd
 import models
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+from models import storage
 import shlex
+import re
 
 
 class HBNBCommand(cmd.Cmd):
@@ -16,6 +24,41 @@ class HBNBCommand(cmd.Cmd):
     """
     intro = 'Welcome to the Hbnb shell. Type help or ? to list commands.\n'
     prompt = '(hbnb) '
+    storage = models.storage
+    __classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "Place": Place,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Review": Review
+    }
+
+    def default(self, arg):
+        """Default method called on an input line when the command prefix
+        is not recognized. This method is called with the entire line as
+        argument, and can be overridden in subclasses.
+        """
+        action_map = {
+            "all": self.do_all,
+            # "count": self.do_count,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "update": self.do_update
+        }
+
+        match = re.search(r"\.", arg)
+        if match:
+            arg1 = [arg[:match.span()[0]], arg[match.span()[1]:]]
+            match = re.search(r"\((.*?)\)", arg1[1])
+            if match:
+                command = [arg1[1][:match.span()[0]], match.group()[1:-1]]
+                if command[0] in action_map:
+                    call = "{} {}".format(arg1[0], command[1])
+                    return action_map[command[0]](call)
+        print("*** Unknown syntax: {}".format(arg))
+        return False
 
     def do_quit(self, arg):
         """Quit command to exit the program
@@ -100,24 +143,27 @@ class HBNBCommand(cmd.Cmd):
         updating attribute (save the change into the JSON file). Ex:
         $ update BaseModel 1234-1234-1234 `aibnb@mail.com`. 
         """
-        if arg == "":
+        if not arg:
             print("** class name missing **")
-        elif arg.split()[0] != "BaseModel":
-            print("** class doesn't exist **")
-        elif len(arg.split()) == 1:
+            return
+        try:
+            cls_name, obj_id, *attr = shlex.split(arg)
+        except ValueError:
             print("** instance id missing **")
-        elif len(arg.split()) == 2:
+            return
+        try:
+            obj = storage.all()[cls_name + "." + obj_id]
+        except KeyError:
+            print("** no instance found **")
+            return
+        if not attr:
             print("** attribute name missing **")
-        elif len(arg.split()) == 3:
+            return
+        if len(attr) == 1:
             print("** value missing **")
-        else:
-            key = arg.split()[0] + "." + arg.split()[1]
-            if key in models.storage.all():
-                setattr(models.storage.all()[key], arg.split()[2],
-                        arg.split()[3].strip('"'))
-                models.storage.save()
-            else:
-                print("** no instance found **")
+            return
+        setattr(obj, attr[0], attr[1])
+        storage.save()
 
 
 if __name__ == '__main__':
