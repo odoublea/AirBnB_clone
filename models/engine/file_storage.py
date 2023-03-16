@@ -27,20 +27,18 @@ class FileStorage():
     """
     __file_path = "file.json"
     __objects = {}
-    __classes = {
-        "BaseModel": BaseModel,
-        "User": User,
-        "Place": Place,
-        "State": State,
-        "City": City,
-        "Amenity": Amenity,
-        "Review": Review
-    }
+    # __classes = {
+    #     "BaseModel": BaseModel,
+    #     "User": User,
+    #     "Place": Place,
+    #     "State": State,
+    #     "City": City,
+    #     "Amenity": Amenity,
+    #     "Review": Review
+    # }
 
     def all(self, cls=None):
         """Returns a dictionary of all objects of a given class."""
-        if cls:
-            return {k: v for k, v in self.__objects.items() if type(v) == cls}
         return self.__objects
 
     def new(self, obj):
