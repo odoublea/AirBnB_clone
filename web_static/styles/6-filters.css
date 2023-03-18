@@ -56,10 +56,6 @@ h4.subtitle {
     padding-left: 30px;
 }
 
-/* .popover {
-    visibility: hidden;
-} */
-
 .popover {
     background-color: #FAFAFA;
     width: unset;
@@ -71,18 +67,19 @@ h4.subtitle {
     display: none;
 }
 
-ul.popover,
-ul.popover>ul {
+.popover,
+.popover>ul,
+.popover>ul li {
     list-style-type: none;
 }
 
-ul.popover>ul li {
-    list-style-type: none inside;
-    padding-left: 15px;
+div.popover ul li+ul {
+    padding-left: 10px;
 }
 
-li:not(:last-child) {
-    padding-bottom: 5px;
+.popover li:not(:last-child),
+div.popover ul li+ul li {
+    padding-bottom: 10px;
 }
 
 .locations:hover .popover,
