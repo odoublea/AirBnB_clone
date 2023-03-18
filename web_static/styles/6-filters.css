@@ -62,7 +62,7 @@ h4.subtitle {
 
 .popover {
     background-color: #FAFAFA;
-    width: 100%;
+    width: unset;
     border: #DDDDDD 1px solid;
     border-radius: 4px;
     padding: 30px;
