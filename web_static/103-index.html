@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="ALX Software Engineering">
+        <meta author="Abdulqudus Oladega">
+        <title>AirBnB Clone</title>
+        <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
+        <link rel="stylesheet" type="text/css" href="./styles/103-common.css">
+        <link rel="stylesheet" type="text/css" href="./styles/103-header.css">
+        <link rel="stylesheet" type="text/css" href="./styles/103-footer.css">
+        <link rel="stylesheet" type="text/css" href="./styles/103-filters.css">
+        <link rel="stylesheet" type="text/css" href="./styles/103-places.css">
+    </head>
+
+    <body>
+        <header>
+            <span id="logo"></span>
+        </header>
+        <div class="container">
+            <section class="filters">
+
+                <div class="locations">
+                    <h3 class="title">States</h3>
+                    <h4 class="subtitle">Lagos, Abuja...</h4>
+                    <div class="popover">
+                        <ul>
+                            <li>
+                                <h2>Lagos: </h2>
+                            </li>
+                            <ul>
+                                <li>City</>
+                                <li>Town</>
+                            </ul>
+
+                            <li>
+                                <h2>Abuja: </h2>
+                            </li>
+                            <ul>
+                                <li>City</li>
+                                <li>Town</li>
+                            </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="amenities">
+                    <h3 class="title">Amenities</h3>
+                    <h4 class="subtitle">Internet, Kitchen...</h4>
+                    <div class="popover">
+                        <ul>
+                            <li>Internet</li>
+                            <li>TV</li>
+                            <li>Kitchen</li>
+                            <li>Iron</li>
+                            <li>Swimming pool</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="search">
+                    <button>Search</button>
+                </div>
+            </section>
+            <section class="places">
+                <h1>Places</h1>
+                <div class="place-container">
+                    <article class="places">
+                        <section class="headline">
+                            <h2>
+                                My home
+                            </h2>
+                            <!-- Price by night section -->
+                            <div class="price_by_night">
+                                <p>$80</p>
+                            </div>
+                        </section>
+                        <section class="info">
+                            <!-- information section -->
+                            <div class="information">
+                                <div class="max_guest">
+                                    <p>3 Guests</p>
+                                </div>
+                                <div class="number_rooms">
+                                    <p>2 Bedrooms</p>
+                                </div>
+                                <div class="number_bathrooms">
+                                    <p>2 Bathrooms</p>
+                                </div>
+                            </div>
+
+                            <!-- User section -->
+                            <div class="user">
+                                <p><strong>Owner: &nbsp;</strong> Alabi Olayemi</p>
+                            </div>
+
+                            <!-- Description section -->
+                            <div class="description">
+                                <p>Looking for a cozy and comfortable getaway? Look no further than this charming
+                                    AirBnB! Located in the heart of a bustling neighborhood, this apartment offers easy
+                                    access to some of the city's best attractions, restaurants, and nightlife. Inside,
+                                    you'll find everything you need to feel right at home, including a fully equipped
+                                    kitchen, comfortable bedding, and plenty of space to relax and unwind. Whether
+                                    you're in town for work or play, this AirBnB is the perfect home base for your stay.
+                                    So why wait? Book your stay today and experience all that this vibrant city has to
+                                    offer!</p>
+                            </div>
+                        </section>
+
+                        <section class="more-info">
+                            <div class="amenities">
+                                <h2 class="article_subtitle">Amenities</h2>
+                                <ul>
+                                    <li>
+                                        <span class="tv_icon amenities_icon"></span> TV
+                                    </li>
+                                    <li>
+                                        <span class="wifi_icon amenities_icon"></span>Wifi
+                                    </li>
+                                    <li>
+                                        <span class="pet_icon amenities_icon"></span>Pet friendly
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="reviews">
+                                <h2 class="article_subtitle">2 Reviews</h2>
+                                <ul>
+                                    <li>
+                                        <div class="review_item">
+                                            <h3>From Guillaume Brent the 28th Februrary 2023</h3>
+                                            <p class="review_text">I had an amazing stay at this AirBnB! The location
+                                                was perfect, with easy access to all the best restaurants and
+                                                attractions in the city. The apartment itself was cozy and stylish, with
+                                                all the amenities I needed for a comfortable stay. The host was also
+                                                incredibly helpful and responsive, making sure that everything was taken
+                                                care of during my stay. I would highly recommend this AirBnB to anyone
+                                                looking for a great place to stay in the city!</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="review_item">
+                                            <h3>From Tuva John the 28th May 2021</h3>
+                                            <p class="review_text">I was birthed in this here bathtub today!</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+
+                    </article>
+                    <article class="places">
+                        <section class="headline">
+                            <h2>
+                                Tiny house
+                            </h2>
+                            <!-- Price by night section -->
+                            <div class="price_by_night">
+                                <p>$50</p>
+                            </div>
+                        </section>
+                        <section class="info">
+                            <!-- information section -->
+                            <div class="information">
+                                <div class="max_guest">
+                                    <p>2 Guests</p>
+                                </div>
+                                <div class="number_rooms">
+                                    <p>1 Bedrooms</p>
+                                </div>
+                                <div class="number_bathrooms">
+                                    <p>1 Bathrooms</p>
+                                </div>
+                            </div>
+
+                            <!-- User section -->
+                            <div class="user">
+                                <p><strong>Owner: &nbsp;</strong> David Eze</p>
+                            </div>
+
+                            <!-- Description section -->
+                            <div class="description">
+                                <p>Experience luxury and sophistication in our stylish AirBnB apartment. Located in the
+                                    heart of the city's trendy neighborhood, our chic and modern space is the perfect
+                                    choice for those looking to indulge in the finer things in life. With high-end
+                                    furnishings and top-of-the-line amenities, including a gourmet kitchen, plush
+                                    bedroom, and a spacious living area with stunning city views, you'll feel like
+                                    royalty from the moment you arrive. And with plenty of trendy restaurants, bars, and
+                                    boutiques just steps away, you'll have everything you need for an unforgettable
+                                    stay. Book now and treat yourself to the ultimate city escape!</p>
+                            </div>
+                        </section>
+                        <section class="more-info">
+                            <div class="amenities">
+                                <h2 class="article_subtitle">Amenities</h2>
+                                <ul>
+                                    <li>
+                                        <span class="tv_icon amenities_icon"></span> TV
+                                    </li>
+                                    <li>
+                                        <span class="wifi_icon amenities_icon"></span>Wifi
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="reviews">
+                                <h2 class="article_subtitle"> 2 Reviews</h2>
+                                <ul>
+                                    <li>
+                                        <div class="review_item">
+                                            <h3>From AJ Shabeel the 3rd March 2023</h3>
+                                            <p class="review_text">I had a good experience staying at this AirBnB. The
+                                                apartment was clean and comfortable, and the host was friendly and
+                                                accommodating. The only downside was that the neighborhood could be a
+                                                bit noisy at night, but overall it was a great value for the price.</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="review_item">
+                                            <h3>From King Musab the 1st December 1991</h3>
+                                            <p class="review_text">My stay at this AirBnB was excellent. The apartment
+                                                was clean, cozy, and had all the amenities I needed. The location was
+                                                also very convenient and close to public transportation. Overall, a
+                                                great value for the price.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </article>
+                    <article class="places">
+                        <section class="headline">
+                            <h2>
+                                A suite
+                            </h2>
+                            <!-- Price by night section -->
+                            <div class="price_by_night">
+                                <p>$150</p>
+                            </div>
+                        </section>
+                        <section class="info">
+                            <!-- information section -->
+                            <div class="information">
+                                <div class="max_guest">
+                                    <p>10 Guests</p>
+                                </div>
+                                <div class="number_rooms">
+                                    <p>4 Bedrooms</p>
+                                </div>
+                                <div class="number_bathrooms">
+                                    <p>5 Bathrooms</p>
+                                </div>
+                            </div>
+
+                            <!-- User section -->
+                            <div class="user">
+                                <p><strong>Owner: &nbsp;</strong> Lewis Tanguhar</p>
+                            </div>
+
+                            <!-- Description section -->
+                            <div class="description">
+                                <p>Welcome to our tranquil AirBnB getaway nestled in the heart of nature. Surrounded by
+                                    lush greenery and breathtaking views, our cozy cabin is the perfect retreat for
+                                    those looking to escape the hustle and bustle of city life. Relax on the porch with
+                                    a cup of coffee, or explore the nearby hiking trails and scenic overlooks. Inside,
+                                    you'll find all the comforts of home, including a fully equipped kitchen,
+                                    comfortable beds, and a cozy living area with a fireplace. So why wait? Book your
+                                    stay today and immerse yourself in the beauty of nature!</p>
+                            </div>
+                        </section>
+                        <section class="more-info">
+                            <div class="amenities">
+                                <h2 class="article_subtitle">Amenities</h2>
+                                <ul>
+                                    <li>
+                                        <span class="tv_icon amenities_icon"></span> TV
+                                    </li>
+                                    <li>
+                                        <span class="wifi_icon amenities_icon"></span>Wifi
+                                    </li>
+                                    <li>
+                                        <span class="pet_icon amenities_icon"></span>Pet friendly
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="reviews">
+                                <h2 class="article_subtitle">1 Review</h2>
+                                <ul>
+                                    <li>
+                                        <div class="review_item">
+                                            <h3>From Justin Timberlake the 28th April 2022</h3>
+                                            <p class="review_text">The location was perfect for exploring the city, and
+                                                the apartment had everything we needed.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </article>
+                </div>
+            </section>
+        </div>
+        <footer>
+            <p>Best School</p>
+        </footer>
+    </body>
+
+</html>
