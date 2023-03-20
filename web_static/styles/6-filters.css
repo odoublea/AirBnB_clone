@@ -58,12 +58,11 @@ h4.subtitle {
 
 .popover {
     background-color: #FAFAFA;
-    width: unset;
     border: #DDDDDD 1px solid;
     border-radius: 4px;
     padding: 30px;
-    position: relative;
     margin-top: 18px;
+    position: relative;
     display: none;
 }
 
