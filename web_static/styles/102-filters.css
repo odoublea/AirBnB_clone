@@ -84,6 +84,6 @@ div.popover ul li+ul li {
 
 .locations:hover .popover,
 .amenities:hover .popover {
-    display: inline-block;
+    display: block;
     cursor: pointer;
 }
