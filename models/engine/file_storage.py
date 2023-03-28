@@ -10,14 +10,6 @@ to a JSON file and deserializes JSON file to instances.
 """
 
 import json
-from datetime import datetime
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
 
 
 class FileStorage():
@@ -46,17 +38,36 @@ class FileStorage():
             json.dump(serialized_objs, f)
 
     def reload(self):
-        """Deserializes the JSON file to __objects (only if the JSON file
+        """Loads storage dictionary from file
+
+        Deserializes the JSON file to __objects (only if the JSON file
         (__file_path) exists; otherwise, do nothing. If the file doesn’t exist,
         no exception should be raised)"""
 
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
+
+        classes = {
+            "BaseModel": BaseModel,
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
+        }
+
         try:
+            objs = {}
             with open(self.__file_path, "r") as f:
                 objs = json.load(f)
-                for o in objs.values():
-                    cls_name = o["__class__"]
-                    del o["__class__"]
-                    self.new(eval(cls_name)(**o))
+                for key, val in objs.items():
+                    self.all()[key] = classes[val['__class__']](**val)
 
         except FileNotFoundError:
             pass
