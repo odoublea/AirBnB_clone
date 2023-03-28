@@ -63,14 +63,15 @@ class HBNBCommand(cmd.Cmd):
         """Prints the string representation of an instance based on the class
         name and id. Ex: $ show BaseModel 1234-1234-1234
         """
+        args = arg.split()
         if arg == "":
             print("** class name missing **")
-        elif arg.split()[0] != "BaseModel":
+        elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-        elif len(arg.split()) == 1:
+        elif len(args) == 1:
             print("** instance id missing **")
         else:
-            key = arg.split()[0] + "." + arg.split()[1]
+            key = args[0] + "." + args[1]
             if key in storage.all():
                 print(storage.all()[key])
             else:
@@ -80,14 +81,15 @@ class HBNBCommand(cmd.Cmd):
         """Deletes an instance based on the class name and id (save the change
         into the JSON file). Ex: $ destroy BaseModel 1234-1234-1234
         """
+        args = arg.split()
         if arg == "":
             print("** class name missing **")
-        elif arg.split()[0] != "BaseModel":
+        elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-        elif len(arg.split()) == 1:
+        elif len(args) == 1:
             print("** instance id missing **")
         else:
-            key = arg.split()[0] + "." + arg.split()[1]
+            key = args[0] + "." + args[1]
             if key in storage.all():
                 del storage.all()[key]
                 storage.save()
@@ -101,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
         if arg == "":
             for value in storage.all().values():
                 print(value)
-        elif arg != "BaseModel":
+        elif arg not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
             for key, value in storage.all().items():
@@ -113,21 +115,22 @@ class HBNBCommand(cmd.Cmd):
         updating attribute (save the change into the JSON file). Ex:
         $ update BaseModel 1234-1234-1234 `aibnb@mail.com`.
         """
+        args = arg.split()
         if arg == "":
             print("** class name missing **")
-        elif arg.split()[0] != "BaseModel":
+        elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-        elif len(arg.split()) == 1:
+        elif len(args) == 1:
             print("** instance id missing **")
-        elif len(arg.split()) == 2:
+        elif len(args) == 2:
             print("** attribute name missing **")
-        elif len(arg.split()) == 3:
+        elif len(args) == 3:
             print("** value missing **")
         else:
-            key = arg.split()[0] + "." + arg.split()[1]
+            key = args[0] + "." + args[1]
             if key in storage.all():
-                setattr(storage.all()[key], arg.split()[2],
-                        arg.split()[3].strip('"'))
+                setattr(storage.all()[key], args[2],
+                        args[3].strip('"'))
                 storage.save()
             else:
                 print("** no instance found **")
