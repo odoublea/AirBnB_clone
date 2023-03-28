@@ -13,8 +13,3 @@ class Amenity(BaseModel):
         name (str): name of the amenity
     """
     name = ""
-
-    def __init__(self, *args, **kwargs):
-        """Constructor method
-        """
-        super().__init__(*args, **kwargs)

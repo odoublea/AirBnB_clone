@@ -13,8 +13,3 @@ class State(BaseModel):
         BaseModel
     """
     name = ""
-
-    def __init__(self, *args, **kwargs):
-        """Constructor method
-        """
-        super().__init__(*args, **kwargs)
