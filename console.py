@@ -5,7 +5,8 @@
 
 
 import cmd
-import models
+import sys
+from models.__init__ import storage
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -14,23 +15,19 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
-CLASSES = [
-    "BaseModel",
-    "User",
-    "State",
-    "City",
-    "Amenity",
-    "Place",
-    "Review"
-]
-
 
 class HBNBCommand(cmd.Cmd):
     """
         HBNB command line interpreter
     """
 
-    prompt = '(hbnb) '
+    prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
+
+    classes = {
+        'BaseModel': BaseModel, 'User': User, 'Place': Place,
+        'State': State, 'City': City, 'Amenity': Amenity,
+        'Review': Review
+    }
 
     def do_quit(self, arg):
         """Quit command to exit the program
@@ -51,14 +48,16 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of BaseModel, saves it (to the JSON file)
         and prints the id. Ex: $ create BaseModel
         """
-        if arg == "":
+        if not arg:
             print("** class name missing **")
-        elif arg != "BaseModel":
+            return
+        elif arg not in HBNBCommand.classes:
             print("** class doesn't exist **")
-        else:
-            new_instance = BaseModel()
-            new_instance.save()
-            print(new_instance.id)
+            return
+        new_instance = HBNBCommand.classes[arg]()
+        storage.save()
+        print(new_instance.id)
+        storage.save()
 
     def do_show(self, arg):
         """Prints the string representation of an instance based on the class
@@ -72,8 +71,8 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             key = arg.split()[0] + "." + arg.split()[1]
-            if key in models.storage.all():
-                print(models.storage.all()[key])
+            if key in storage.all():
+                print(storage.all()[key])
             else:
                 print("** no instance found **")
 
@@ -89,9 +88,9 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             key = arg.split()[0] + "." + arg.split()[1]
-            if key in models.storage.all():
-                del models.storage.all()[key]
-                models.storage.save()
+            if key in storage.all():
+                del storage.all()[key]
+                storage.save()
             else:
                 print("** no instance found **")
 
@@ -100,12 +99,12 @@ class HBNBCommand(cmd.Cmd):
         the class name. Ex: $ all BaseModel or $ all
         """
         if arg == "":
-            for value in models.storage.all().values():
+            for value in storage.all().values():
                 print(value)
         elif arg != "BaseModel":
             print("** class doesn't exist **")
         else:
-            for key, value in models.storage.all().items():
+            for key, value in storage.all().items():
                 if arg in key:
                     print(value)
 
@@ -126,10 +125,10 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             key = arg.split()[0] + "." + arg.split()[1]
-            if key in models.storage.all():
-                setattr(models.storage.all()[key], arg.split()[2],
+            if key in storage.all():
+                setattr(storage.all()[key], arg.split()[2],
                         arg.split()[3].strip('"'))
-                models.storage.save()
+                storage.save()
             else:
                 print("** no instance found **")
 
