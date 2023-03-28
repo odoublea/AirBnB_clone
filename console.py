@@ -40,7 +40,6 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, arg):
         """EOF command to exit the program
         """
-        print()
         return True
 
     def emptyline(self):
